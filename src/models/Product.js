@@ -10,7 +10,7 @@ const ProductSchema = new mongoose.Schema({
         type: String,
     },
     price: {
-        type: Float,
+        type: Number,
         require: [true, "Must have price"]
     }
 })

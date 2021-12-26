@@ -39,9 +39,9 @@ const updateProduct = async (req, res) => {
         const { product_id } = req.params;
         const { name, description, price } = req.body;
 
-        const updatedProduct = await Task.findByIdAndUpdate(product_id, { name, description, price });
+        await Product.findByIdAndUpdate(product_id, { name, description, price });
 
-        res.status(200).json({ message: "Product updated", data: updatedProduct })
+        res.status(200).json({ message: "Product updated" })
     } catch (error) {
         res.status(400).json({ error })
     }
@@ -53,9 +53,9 @@ const deleteProduct = async (req, res) => {
     try {
         const { product_id } = req.params;
 
-        const deletedProduct = await Task.findByIdAndDelete(product_id);
+        await Product.findByIdAndDelete(product_id);
 
-        res.status(200).json({ message: "Product deleted", data: deletedProduct })
+        res.status(200).json({ message: "Product deleted" })
 
     } catch (error) {
         res.status(400).json({ error })
