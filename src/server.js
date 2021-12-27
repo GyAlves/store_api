@@ -1,4 +1,6 @@
 require("dotenv").config();
+require("express-async-errors");
+
 const express = require('express');
 const routes = require('./routes/products.routes');
 const mongooseConnection = require("./database/mongoose");
