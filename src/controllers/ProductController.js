@@ -3,14 +3,22 @@ const Product = require("../models/Product");
 const getAllProducts = async (req, res) => {
     try {
 
-        const { featured } = req.query;
+        const { featured, company, name } = req.query;
         const queryObject = {};
 
         if (featured) {
             queryObject.featured = featured === "true" ? true : false;
         }
 
-        console.log(queryObject);
+        if (company) {
+            queryObject.company = company
+        }
+
+
+        if (name) {
+            queryObject.name = { $regex: name, $options: "i" }
+        }
+
         const products = await Product.find(queryObject);
         res.status(200).json({ products, nbHits: products.length });
     } catch (error) {
